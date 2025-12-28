@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UHealth Case Study - Angel Rajotia</title>
+    <meta name="description" content="UX Research and AI Engineering case study on reducing emergency room overcrowding.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Custom Styles for the Browser Mockup */
+        .browser-frame {
+            border-top: 25px solid #f3f4f6;
+            border-radius: 12px 12px 0 0;
+            position: relative;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .browser-dots {
+            position: absolute;
+            top: -17px;
+            left: 12px;
+            display: flex;
+            gap: 6px;
+        }
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        
+        /* Video Aspect Ratio */
+        .video-responsive {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+        .video-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Divider Utility */
+        .section-divider { 
+            border-top: 1px solid #f3f4f6; 
+            padding-top: 5rem; 
+            margin-top: 5rem; 
+        }
+
+        /* AI Gradient Background */
+        .ai-gradient {
+            background: linear-gradient(135deg, #EFF6FF 0%, #F5F3FF 100%);
+            border-left: 4px solid #6366F1; /* Indigo-500 */
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 antialiased selection:bg-blue-100 selection:text-blue-900">
+
+    <nav class="sticky top-0 bg-white/90 backdrop-blur-md z-50 border-b border-gray-100 transition-all">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center max-w-4xl">
+            <a href="index.html" class="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors font-medium text-sm group">
+                <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to Home
+            </a>
+            <span class="text-gray-400 text-xs font-bold tracking-widest uppercase">MIE344 Case Study</span>
+        </div>
+    </nav>
+
+    <header class="py-20 bg-gray-50 border-b border-gray-100">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+                UHealth App: Bridging Healthcare for International Students in Canada
+            </h1>
+            <p class="text-xl text-gray-600 mb-6 leading-relaxed max-w-2xl">
+                A human-factors driven mobile solution designed to help international students at UofT navigate insurance and urgent care.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-10">
+                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Figma</span>
+                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">UX Research</span>
+                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Human Factors</span>
+                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Gemini 3.0 Reasoning</span>
+                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Usability Testing</span>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-left border-t border-gray-200 pt-10">
+                <div>
+                    <h4 class="text-xs uppercase text-gray-400 font-bold tracking-widest mb-2">Role</h4>
+                    <p class="text-sm font-semibold">UX Researcher, UI Designer & Engineer</p>
+                </div>
+                <div>
+                    <h4 class="text-xs uppercase text-gray-400 font-bold tracking-widest mb-2">Timeline</h4>
+                    <p class="text-sm font-semibold">Sept 2025 - Dec 2025</p>
+                </div>
+                <div>
+                    <h4 class="text-xs uppercase text-gray-400 font-bold tracking-widest mb-2">Project Type</h4>
+                    <p class="text-sm font-semibold">Coursework + AI Research</p>
+                </div>
+                <div>
+                    <h4 class="text-xs uppercase text-gray-400 font-bold tracking-widest mb-2">Contact</h4>
+                    <p class="text-sm font-semibold underline decoration-blue-500"><a href="mailto:angelrajotia@gmail.com">Email Me</a></p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16 max-w-4xl">
+        
+        <section>
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                <span class="text-blue-600"></span>1. Overview
+            </h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                International students at the University of Toronto often face a navigability crisis. Despite having insurance (UHIP), many default to the Emergency Room for minor issues due to a lack of clear system knowledge. 
+            </p>
+            
+            <div class="bg-gray-100 rounded-3xl overflow-hidden mb-8 border border-gray-200 shadow-sm">
+                <img src="images/journey-map.png" alt="User Journey Map" class="w-full h-auto">
+            </div>
+            <p class="text-center text-gray-400 text-sm italic">User Journey Map: Tracking the "Onset to Outcome" experience of navigating UofT healthcare.</p>
+        </section>
+
+        <section class="section-divider">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                <span class="text-blue-600"></span>2. The Problem: The "ER-Default" Heuristic
+            </h2>
+            <p class="text-lg text-gray-700 mb-10 leading-relaxed">
+                Through my research, I identified a dangerous trend: <strong>The Uncertainty-Panic-ER Pipeline.</strong> 
+                When a student feels ill at 10:00 PM, the cognitive load of checking insurance coverage is too high. They default to the ER because it is the only "guaranteed" care, leading to overcrowding.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="bg-white p-2 rounded-2xl shadow-lg border border-gray-100">
+                    <img src="images/mind-map.png" alt="Brainstorming Mind Map" class="w-full h-auto rounded-xl">
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Mapping the Fragmentation</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        I visualized the density of these barriers through a detailed Mind Map, identifying key clusters: <strong>Wait Times</strong>, <strong>UHIP Coverage Clarity</strong>, and <strong>After-Hours Decision Support</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-divider">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                <span class="text-blue-600"></span> 3. User Research Findings
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <img src="images/survey-wait-times.png" alt="Survey Results: Wait Times" class="w-full h-auto mb-4">
+                    <p class="text-xs text-gray-400 text-center font-bold">Booking at Health & Wellness (66% report difficulty)</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <img src="images/survey-er-waits.png" alt="Survey Results: ER Usage" class="w-full h-auto mb-4">
+                    <p class="text-xs text-gray-400 text-center font-bold">ER Wait Times (50% report 4+ hour waits)</p>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-600 p-8 rounded-r-2xl mb-12">
+                <p class="text-blue-900 font-semibold text-lg italic mb-2">Key Research Insight:</p>
+                <p class="text-blue-800 text-xl leading-relaxed">
+                    "Students would rather wait for an Uber while in severe pain than risk an uninsured ambulance fee, yet they default to the ER for simple fever because it's 'guaranteed' care."
+                </p>
+            </div>
+        </section>
+
+        <section class="section-divider">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                <span class="text-blue-600"></span>4. Ideation: From 24 Concepts to 1 Solution
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                I adopted a "Quantity over Quality" approach (Crazy 8s) to break through initial biases, generating concepts ranging from Health Drones (Low Feasibility) to the winning solution.
+            </p>
+
+            <div class="bg-white p-2 rounded-2xl shadow-xl border border-gray-200 mb-10">
+                <img src="images/ideas-board.png" alt="24 Brainstormed Ideas Board" class="w-full h-auto rounded-xl">
+                <p class="text-center text-gray-400 text-sm mt-4 italic">The "Ideas Board": 24 distinct concepts ranging from floating drones to chat-bots.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-10 items-start">
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-xl font-bold mb-4">The Selection Matrix</h3>
+                    <p class="text-gray-600 mb-4">I evaluated concepts against six weighted criteria: User Value, Feasibility, Equity, UHIP Alignment, After-Hours Support, and Testability.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-2 text-sm text-green-600 font-bold"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> One-Stop Care Navigator App (Selected)</li>
+                        <li class="flex items-center gap-2 text-sm text-green-600 font-bold"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> Campus "Now-Open" Map (Selected)</li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/2 bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <img src="images/selection-matrix.png" alt="Concept Selection Matrix" class="w-full h-auto rounded-lg">
+                </div>
+            </div>
+        </section>
+
+        <section class="section-divider">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                <span class="text-blue-600"></span>5. Iterative Changes & Prototype Demo
+            </h2>
+
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6">Initial Blueprints (Low-Fi)</h3>
+                <div class="bg-white p-4 rounded-2xl shadow-md border border-gray-100">
+                    <img src="images/low-fi-wireframes.png" alt="Low-Fidelity Wireframes" class="w-full h-auto rounded-xl">
+                    <p class="text-center text-xs text-gray-400 mt-4 italic">Low-Fi Wireframes: Mapping core user paths including Login, Home, and the ER-Bot.</p>
+                </div>
+            </div>
+
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6">Low-Fi Testing Outcomes</h3>
+                
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-12">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="w-full md:w-1/2">
+                            <h4 class="text-lg font-bold text-gray-900 mb-4">From Feedback to Flow</h4>
+                            <p class="text-gray-700 leading-relaxed mb-4">
+                                Testing our low-fidelity wireframes revealed that while the core navigation was intuitive (100% completion rate), specific pages like "Account Setup" were over-engineered. We used these insights to simplify the high-fidelity design.
+                            </p>
+                            <div class="flex gap-4">
+                                <div class="bg-red-50 p-4 rounded-lg border border-red-100 w-full text-center">
+                                    <span class="block text-2xl font-bold text-red-600 mb-1">100%</span>
+                                    <span class="text-xs text-red-800 font-medium">Task Completion</span>
+                                </div>
+                                <div class="bg-red-50 p-4 rounded-lg border border-red-100 w-full text-center">
+                                    <span class="block text-2xl font-bold text-red-600 mb-1">4.6/5</span>
+                                    <span class="text-xs text-red-800 font-medium">Satisfaction Score</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2">
+                            <img src="images/testing-results.png" alt="High Effectiveness and Satisfaction Scores" class="w-full h-auto rounded-xl shadow-sm border border-gray-100">
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold mb-6">Low-Fi to High-Fi Key Iterations: Before vs. After</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="group bg-white p-4 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300">
+                        <div class="bg-gray-50 rounded-lg overflow-hidden mb-4 relative">
+                            <img src="images/finding-home.png" alt="Cluttered Home Screen Iteration" class="w-full h-auto group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">1. Reducing Cognitive Load</h4>
+                        <p class="text-sm text-gray-600">
+                            <strong>Problem:</strong> "Quick Actions" cluttered the home screen.<br>
+                            <strong>Fix:</strong> Removed redundant buttons to prioritize the primary Search bar.
+                        </p>
+                    </div>
+
+                    <div class="group bg-white p-4 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300">
+                        <div class="bg-gray-50 rounded-lg overflow-hidden mb-4 relative">
+                            <img src="images/finding-resources.png" alt="Resources Icon Iteration" class="w-full h-auto group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">2. Intuitive Iconography</h4>
+                        <p class="text-sm text-gray-600">
+                            <strong>Problem:</strong> Users confused the generic grid icon.<br>
+                            <strong>Fix:</strong> Swapped for a "Book" icon to match the student mental model.
+                        </p>
+                    </div>
+
+                    <div class="group bg-white p-4 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300">
+                        <div class="bg-gray-50 rounded-lg overflow-hidden mb-4 relative">
+                            <img src="images/finding-account.png" alt="Account Setup Iteration" class="w-full h-auto group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">3. Streamlining Onboarding</h4>
+                        <p class="text-sm text-gray-600">
+                            <strong>Problem:</strong> "Preferences" bar was overlapping and confusing.<br>
+                            <strong>Fix:</strong> Removed the feature entirely to reduce time-to-value.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mt-20 border-t border-gray-100 pt-16">
+                <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                    <span class="text-purple-600"></span>Polishing the High-Fidelity UI
+                </h3>
+                
+                <div class="flex flex-col md:flex-row gap-10 items-center mb-10">
+                    <div class="w-full md:w-2/5">
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Even after moving to High-Fidelity, usability testing revealed subtle friction points. We conducted a "Micro-Iteration" sprint to resolve clarity issues regarding navigation visibility and button logic.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xs font-bold mt-0.5">1</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-sm">Map Filters</h4>
+                                    <p class="text-xs text-gray-600">Removed redundant "More Filters" options to simplify the sorting bar.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xs font-bold mt-0.5">2</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-sm">Quick Actions</h4>
+                                    <p class="text-xs text-gray-600">Replaced generic "Notes" shortcut with high-value Emergency contacts.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xs font-bold mt-0.5">3</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-sm">Chatbot Visibility</h4>
+                                    <p class="text-xs text-gray-600">Switched from an abstract icon to a clear "Chat" text label to increase discovery.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full md:w-3/5">
+                        <div class="bg-gray-50 p-2 rounded-2xl shadow-sm border border-gray-100">
+                            <img src="images/hifi-iterations.jpg" alt="Usability Issues and High-Fi Solutions" class="w-full h-auto rounded-xl">
+                        </div>
+                        <p class="text-center text-xs text-gray-400 mt-3 italic">Visualizing the "Current State" vs. "Future State" logic for UI refinements.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-bold mb-4">High-Fidelity Prototype Demo</h3>
+            </div>
+
+            <div class="browser-frame bg-gray-100 rounded-2xl overflow-hidden mb-12 shadow-md">
+                <div class="browser-dots p-3 border-b border-gray-200 bg-gray-50">
+                    <div class="dot bg-red-400"></div>
+                    <div class="dot bg-yellow-400"></div>
+                    <div class="dot bg-green-400"></div>
+                </div>
+
+                <div class="video-responsive bg-black">
+                    <iframe 
+                        width="560" 
+                        height="315" 
+                        src="https://www.youtube.com/embed/Mf2Q5OnY7C4" 
+                        title="UHealth Prototype Demo" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="bg-gray-50 p-4 border-t border-gray-200 text-center">
+                    <p class="text-xs text-gray-500 mb-2">Video not loading? Corporate network blocking it?</p>
+                    <a href="https://youtu.be/Mf2Q5OnY7C4" target="_blank" class="inline-flex items-center gap-2 text-blue-600 font-bold hover:text-blue-800 transition-colors text-sm">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                        Watch directly on YouTube &rarr;
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section-divider mb-20">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                <span class="text-blue-600"></span>6. Usability Reality Check
+            </h2>
+    
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="w-full md:w-1/2">
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Design is never finished. Prior to the AI redesign, we tested the prototype with real users (n=6) to validate our assumptions.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-8">
+                        While the critical "ER Bot" flow had a 100% completion rate, <strong>Task 2.2 (Use Filters)</strong> revealed a friction point, resulting in a failed attempt and the lowest satisfaction score (4/5) of the session.
+                    </p>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl shadow-sm">
+                        <h4 class="font-bold text-blue-900 mb-2">Reflection</h4>
+                            <p class="text-blue-800 italic leading-relaxed">
+                                "This 'failure' was a big learning moment. It highlighted that even a simple UI fails if the interaction design doesn't account for the physical constraints of a <strong>stressed</strong> user."
+                            </p>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2">
+                    <figure class="bg-white p-2 rounded-2xl shadow-lg border border-gray-100 transition-transform hover:scale-[1.02] duration-300">
+                        <img src="images/testing-results.png" alt="Usability Testing Data Table" class="w-full h-auto rounded-xl">
+                            <figcaption class="text-center text-xs text-gray-400 mt-4 italic">
+                                Quantitative results from Usability Tests.
+                            </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="ai-gradient p-8 rounded-xl shadow-sm my-12">
+            <div class="flex items-center mb-4">
+                <span class="bg-indigo-600 text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wide mr-3">✨New Experiment</span>
+                <h2 class="text-2xl font-bold text-gray-900">7. The Gemini 3.0 AI Audit</h2>
+            </div>
+            <p class="text-gray-700 mb-6 leading-relaxed">
+                Post-course, I used <strong>Gemini 3.0’s Reasoning Mode</strong> to perform a "Stress Test" on my design. I acted as a Human Factors Engineer, asking the AI to audit my prototype against Nielsen’s Heuristics with a specific focus on "High-Panic" user states.
+            </p>
+
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-8">
+                <table class="min-w-full text-sm text-left">
+                    <thead class="bg-gray-50 text-gray-900 font-semibold border-b border-gray-200">
+                        <tr>
+                            <th class="px-6 py-4">Heuristic Principle</th>
+                            <th class="px-6 py-4">Student Testing Finding</th>
+                            <th class="px-6 py-4 text-indigo-700">Gemini 3.0 AI Insight</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr>
+                            <td class="px-6 py-4 font-medium">Visibility of System Status</td>
+                            <td class="px-6 py-4 text-gray-600">Users completed the ER Bot flow but felt "uncertain" about length.</td>
+                            <td class="px-6 py-4 bg-indigo-50 text-gray-800">
+                                <strong>Critical Gap:</strong> In a "Panic" state, users need a visible progress bar. The lack of "Steps Remaining" increases abandonment risk.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 font-medium">Match System w/ Real World</td>
+                            <td class="px-6 py-4 text-gray-600">Confusion over terms like "Direct Billing" and "Requisition".</td>
+                            <td class="px-6 py-4 bg-indigo-50 text-gray-800">
+                                <strong>Jargon Alert:</strong> Non-native speakers view "Billing" as "Cost." AI suggested replacing text with "No-Cost" icons.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 font-medium">Error Prevention</td>
+                            <td class="px-6 py-4 text-gray-600"><strong>Satisfaction Score 1/5:</strong> Login was "annoying" due to keyboard handling.</td>
+                            <td class="px-6 py-4 bg-indigo-50 text-gray-800">
+                                <strong>Physical Constraint:</strong> Login requires too much manual dexterity for an emergency. AI proposed a "Guest Access" mode to bypass auth entirely.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="text-lg font-bold text-gray-900 mb-3">Proposed "Version 2.0" Redesign</h3>
+            <p class="text-gray-600 mb-4">Based on the AI audit, I have proposed three architectural changes:</p>
+            <ul class="space-y-3">
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xs mt-0.5 mr-3">1</span>
+                    <span class="text-gray-700"><strong>Emergency Guest Mode:</strong> A "Zero-UI" entry point that allows students to access the ER map immediately without logging in.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xs mt-0.5 mr-3">2</span>
+                    <span class="text-gray-700"><strong>Predictive Wait-Times:</strong> Using historical data to show "Busy Trends," helping students avoid clinics about to hit capacity.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xs mt-0.5 mr-3">3</span>
+                    <span class="text-gray-700"><strong>Jargon Translator:</strong> An AI overlay that translates complex insurance terms (e.g., "Deductible") into plain student language.</span>
+                </li>
+            </ul>
+        </section>
+
+
+
+        <section class="border-t border-gray-200 pt-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">8. Final Thoughts</h2>
+            <p class="text-gray-600 leading-relaxed mb-8">
+                This project taught me that healthcare is an Information System problem. By combining <strong>Human Factors principles</strong> (visibility, error prevention) with <strong>AI-assisted auditing</strong>, we can build systems that don't just "look" good, but actually work when users need them most.
+            </p>
+            
+            <div class="bg-gray-50 p-4 rounded text-sm text-gray-500 mb-12">
+                <strong>Methodology Note:</strong> The core UHealth project was completed manually for MIE344 to ensure academic integrity. The AI-Assisted Audit (Section 6) was a post-course experiment to explore modern UX workflows.
+            </div>
+        </section>
+
+        <div class="mt-20 p-12 bg-blue-600 text-white rounded-[3rem] text-center shadow-2xl shadow-blue-200">
+            <h3 class="text-3xl font-bold mb-4">Explore the Final Solution!</h3>
+            <p class="text-blue-100 mb-10 text-lg">Click below to interact with the high-fidelity Figma prototype.</p>
+            <a href="https://www.figma.com/proto/INysXgIh1aowmNJs4ovV56/UHealth-App-Prototype?page-id=4457%3A3178&node-id=4457-3331&p=f&viewport=370%2C51%2C0.06&t=xOwYqedPD8VFC5jJ-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4457%3A3331&show-proto-sidebar=1" target="_blank" class="inline-flex items-center gap-3 bg-white text-blue-600 px-10 py-4 rounded-2xl font-bold text-lg hover:bg-blue-50 transition-all transform hover:scale-105">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
+                Open Figma Prototype
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="py-16 bg-white border-t border-gray-100 mt-20">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400 text-sm mb-6">&copy; 2025 Angel Rajotia. Designed for impact.</p>
+            <a href="index.html" class="text-blue-600 font-bold hover:underline">Return to Home</a>
+        </div>
+    </footer>
+
+</body>
+</html>
+
