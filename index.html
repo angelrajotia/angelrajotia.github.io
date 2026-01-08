@@ -59,7 +59,7 @@
         position: absolute;
       }
 
-      /* NEW: Styles for the mobile menu overlay */
+      /* Improved transition for mobile menu */
       #mobile-menu {
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -165,10 +165,10 @@
             </div>
         </nav>
 
-        <!-- Glass-like Mobile Menu Overlay -->
-        <div id="mobile-menu" class="fixed inset-0 bg-white/70 backdrop-blur-xl z-[60] transform -translate-x-full md:hidden flex flex-col">
+        <!-- Glass-like Mobile Menu Overlay (Refined Translucency) -->
+        <div id="mobile-menu" class="fixed inset-0 bg-white/60 backdrop-blur-md z-[60] transform -translate-x-full md:hidden flex flex-col">
             <div class="flex justify-end p-6">
-                <button id="close-btn" class="text-gray-800 hover:text-blue-600 p-2 rounded-full active:bg-white/50 transition-all">
+                <button id="close-btn" class="text-gray-800 hover:text-blue-600 p-2 rounded-full active:bg-white/30 transition-all">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
