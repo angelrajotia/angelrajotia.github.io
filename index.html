@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -62,7 +61,7 @@
 
       /* NEW: Styles for the mobile menu overlay */
       #mobile-menu {
-        transition: transform 0.3s ease-in-out;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
       
       /* NEW: Subtle transition for hover effects */
@@ -140,12 +139,10 @@
                 <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors px-2 py-1 nav-link">About</a>
                 <a href="#education" class="text-gray-600 hover:text-blue-600 transition-colors px-2 py-1 nav-link">Education</a>
                 <a href="#projects" class="text-gray-600 hover:text-blue-600 transition-colors px-2 py-1 nav-link">Projects</a>
+                <a href="#blog" class="text-gray-600 hover:text-blue-600 transition-colors px-2 py-1 nav-link">Creative</a>
                 <a href="#experience" class="text-gray-600 hover:text-blue-600 transition-colors px-2 py-1 nav-link">Experience</a>
                 <a href="#mentorship" class="text-gray-600 hover:text-blue-600 transition-colors px-2 py-1 nav-link">Mentorship</a>
-                <a href="#blog" class="text-gray-600 hover:text-blue-600 transition-colors px-2 py-1 nav-link">Creative</a>
-                <!-- REMOVED Blog and Vlogs -->
                 
-                <!-- NEW: LinkedIn Icon Link -->
                 <!-- 
                   LINKEDIN LINK
                   - Paste your LinkedIn profile URL in the `href="..."` attribute below.
@@ -160,7 +157,7 @@
             
             <!-- Mobile Menu Button -->
             <div class="md:hidden">
-                <button id="menu-btn" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+                <button id="menu-btn" class="text-gray-700 hover:text-blue-600 focus:outline-none p-2 rounded-lg transition-colors active:bg-gray-100">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -168,30 +165,26 @@
             </div>
         </nav>
 
-        <!-- NEW: Mobile Menu Overlay -->
-        <div id="mobile-menu" class="fixed inset-0 bg-white z-40 transform -translate-x-full md:hidden">
+        <!-- Glass-like Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-white/70 backdrop-blur-xl z-[60] transform -translate-x-full md:hidden flex flex-col">
             <div class="flex justify-end p-6">
-                <button id="close-btn" class="text-gray-700 hover:text-blue-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <button id="close-btn" class="text-gray-800 hover:text-blue-600 p-2 rounded-full active:bg-white/50 transition-all">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
-            <div class="flex flex-col items-center justify-center space-y-6 text-xl">
-                <a href="#about" class="text-gray-700 hover:text-blue-600 mobile-link">About</a>
-                <a href="#education" class="text-gray-700 hover:text-blue-600 mobile-link">Education</a>
-                <a href="#experience" class="text-gray-700 hover:text-blue-600 mobile-link">Experience</a>
-                <a href="#projects" class="text-gray-700 hover:text-blue-600 mobile-link">Projects</a>
-                <a href="#mentorship" class="text-gray-700 hover:text-blue-600 mobile-link">Mentorship</a>
-                <a href="#blog" class="text-gray-700 hover:text-blue-600 mobile-link">Mentorship</a>
-                <!-- REMOVED Blog and Vlogs -->
-
-                <!-- NEW: LinkedIn Icon Link (Mobile) -->
-                <a href="[https://www.linkedin.com/in/angel-rajotia/]" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-blue-600 transition-colors mt-4" title="My LinkedIn Profile">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/>
-                    </svg>
-                    <span class="sr-only">My LinkedIn Profile</span>
+            <div class="flex flex-col items-center justify-center flex-grow space-y-8 text-2xl font-bold tracking-tight text-gray-900">
+                <a href="#about" class="hover:text-blue-600 mobile-link transition-colors">About</a>
+                <a href="#education" class="hover:text-blue-600 mobile-link transition-colors">Education</a>
+                <a href="#projects" class="hover:text-blue-600 mobile-link transition-colors">Projects</a>
+                <a href="#blog" class="hover:text-blue-600 mobile-link transition-colors">Creative</a>
+                <a href="#experience" class="hover:text-blue-600 mobile-link transition-colors">Experience</a>
+                <a href="#mentorship" class="hover:text-blue-600 mobile-link transition-colors">Mentorship</a>
+                
+                <a href="https://www.linkedin.com/in/angel-rajotia/" target="_blank" rel="noopener noreferrer" class="text-blue-600 flex items-center gap-2 pt-4">
+                    <span>LinkedIn</span>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </a>
             </div>
         </div>
@@ -297,7 +290,7 @@
                         <li>Human Factors Interest Group (HFIG)</li>
                         <li>Skule F!rosh Week (Orientation) Leedur</li>
                         <li>Women in Science & Engineering (WISE)</li>
-                        <li>UofT Musical Design Team</li>
+                        <li>UofT Musical Design Team Co-Founder, President</li>
                     </ul>
                 </div>
             </div>
@@ -359,117 +352,8 @@
 
             </div>
         </section>
-        
-        <!-- Moved Section: Experience (Work + Volunteering) after Projects for better projects visibility-->
-        <!-- Section 2: Experience (Work + Volunteering) -->
-        <!-- NEW: Added fade-in-section class -->
-        <section id="experience" class="mb-16 md:mb-24 scroll-mt-20 fade-in-section">
-            <!-- NEW: Added border for visual hierarchy -->
-            <h2 class="text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-200">Experience</h2>
-            
-            <!-- 
-              NEW: Resume Download Link
-              - Paste your public resume link in the `href="..."` attribute below.
-            -->
-            <a href="https://drive.google.com/file/d/11iOZT5zV-DFu6JtkFlIn1E5sXQ4yiFY6/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block text-blue-600 font-medium hover:underline mb-8">
-                View my resume here &rarr;
-            </a>
-            
-            <!-- Work Experience Subsection -->
-            <h3 class="text-2xl font-semibold text-gray-800 mt-12 mb-6">Work Experience Highlights</h3>
-            <div class="space-y-5">
-                
-                <!-- 
-                  WORK EXPERIENCE ITEM 1
-                  - Copy this whole <article> block to add another job.
-                  - Delete it to remove.
-                -->
-                <article>
-                    <h4 class="text-xl font-semibold text-gray-900">AMD (Advanced Micro-Devices)</h4>
-                    <p class="text-lg text-blue-600 mb-2">Software Program Management Analyst Co-op &bull; May 2024 - Aug 2025</p>
-                    <p class="text-sm text-gray-500 mb-3">
-                        Skills: Python, SQL, AI-Automation, Jira, Confluence, Agile Methodologies, Data Analysis
-                    </p>
-                    <ul class="list-disc list-outside ml-5 space-y-2 text-gray-700">
-                        <li>Led strategic competitive analysis for Adrenalin AI vs. NVIDIA G-Assist, presenting insights to AMD’s Chief Software Officer to influence product direction.</li>
-                        <li>Built AI-powered automation pipelines using Python and SQL to auto-generate release note templates, reducing manual reporting effort by ~70%.</li>
-                        <li>Coordinated cross-functional delivery across product, engineering, QA, and marketing teams to improve release readiness and reporting accuracy by ~20%.</li>
-                    </ul>
-                </article>
-
-                <!-- 
-                  WORK EXPERIENCE ITEM 2
-                  - This is a second example. Edit, copy, or delete as needed.
-                -->
-                <article>
-                    <h4 class="text-xl font-semibold text-gray-900">Transform HF, Ted Rogers Center for Heart Research (UHN) and University of Toronto</h4>
-                    <p class="text-lg text-blue-600 mb-2">Healthcare UX Research Fellow &bull; May 2023 - Aug 2023</p>
-                    <p class="text-sm text-gray-500 mb-3">
-                        Skills: Figma, UX Research, Usability Testing, Journey Mapping, Healthcare UX, Scenario-Based Design
-                    </p>
-                    <p class="text-sm text-blue-600 mb-3">
-                        <a href="https://link.springer.com/chapter/10.1007/978-3-031-61966-3_32" target="_blank" class="underline hover:text-blue-800">
-                            Find my publication here →
-                        </a>
-                    </p>
-                    <ul class="list-disc list-outside ml-5 space-y-2 text-gray-700">
-                        <li>Led user interviews with clinicians and patients, translating insights into journey maps that shaped pilot design requirements.</li>
-                        <li>Facilitated design thinking and usability testing workshops to guide development of a post-discharge heart failure care solution.</li>
-                        <li>Created high-fidelity Figma prototypes focused on accessibility and engagement for vulnerable heart failure patient groups.</li>
-                    </ul>
-                </article>
-            </div>
-            
-            
-            <!-- Volunteering Subsection -->
-            <!--
-            <h3 class="text-2xl font-semibold text-gray-800 mt-12 mb-6">Volunteering</h3>
-            <div class="space-y-10">
-                <article>
-                    <h4 class="text-xl font-semibold text-gray-900">University of Toronto Pearson Scholarship Program</h4>
-                    <p class="text-lg text-blue-600 mb-2">Pearson Committee Co-Chair &bull; Jul 2025 – Present</p>
-                    <ul class="list-disc list-outside ml-5 space-y-2 text-gray-700">
-                        <li>Leading strategic planning for a $10K+ annual fund to support community initiatives and scholar programming.</li>
-                        <li>Building cross-cohort mentorship and leadership development initiatives for a community of 330+ Pearson Scholars.</li>
-                    </ul>
-                </article>
-
-                <article>
-                    <h4 class="text-xl font-semibold text-gray-900">You’re Next Career Network (YNCN), University of Toronto</h4>
-                    <p class="text-lg text-blue-600 mb-2">Business Development Associate &bull; Apr 2023 – Apr 2025</p>
-                    <ul class="list-disc list-outside ml-5 space-y-2 text-gray-700">
-                        <li>Secured 30+ corporate partnerships and secured $50K+ in revenue to support career events for 8,000+ students.</li>
-                        <li>Developed sponsorship strategies and collaborated with cross-functional teams to grow employer engagement.</li>
-                    </ul>
-                </article>
-
-            </div> -->
-        </section>
 
 
-
-        <!-- Section 5: Mentorship -->
-        <!-- NEW: Added fade-in-section class -->
-        <section id="mentorship" class="mb-16 md:mb-24 scroll-mt-20 text-center bg-blue-50 p-10 rounded-lg border border-blue-200 fade-in-section">
-            <!-- NEW: Added border for visual hierarchy -->
-            <h2 class="text-3xl font-bold text-gray-900 mb-8 pb-2 border-b-2 border-blue-200 inline-block">Mentorship & Guidance</h2>
-            <p class="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
-                Looking for guidance on your career, help with applications, or a resume review? 
-                I offer 1-on-1 sessions to help you navigate your journey. <br>
-                <strong>Please send me a message on LinkedIn to schedule a session!</strong>
-            </p>
-            <!-- 
-              BOOKING LINK
-              - Sign up for a free service like Calendly.
-              - Get your public booking link.
-              - Paste the link in the `href="..."` attribute below.
-            -->
-            <!-- NEW: Added hover effect -->
-            <a href="https://www.linkedin.com/in/angel-rajotia/" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md font-medium text-lg hover:bg-blue-700 transition-all transform hover:scale-105">
-                Book a 1:1 Session (coming soon) 
-            </a>
-        </section>
-        
         <!-- Section 6: Personal Blog-->
         <!-- NEW: Added fade-in-section class -->
         <section id="blog" class="mb-16 md:mb-24 scroll-mt-20 fade-in-section">
@@ -591,6 +475,148 @@
             </div>
         </section>
 
+        <section id="music" class="mb-16 md:mb-24 scroll-mt-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 pb-2 border-b-2 border-blue-200">My Music</h2>
+            <p class="text-gray-600 mb-10 text-lg">Music has been a big part of my life and identity. I've been singing and playing instruments since I was 4 years old. I would love to make music of my own, but in the meantime, here are some covers I recorded..</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Music Item 1: All I Want -->
+                <div class="bg-white p-4 rounded-2xl shadow-md border border-gray-200 card-hover">
+                    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1149791461&color=%232563eb&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    <div class="mt-4 text-center md:text-left">
+                        <h3 class="text-xl font-bold text-gray-900">All I Want - Kodaline (Cover)</h3>
+                        <p class="text-gray-500 text-sm">Vocal performance</p>
+                    </div>
+                </div>
+
+                <!-- Music Item 2: Creep -->
+                <div class="bg-white p-4 rounded-2xl shadow-md border border-gray-200 card-hover">
+                    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1152002380&color=%232563eb&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    <div class="mt-4 text-center md:text-left">
+                        <h3 class="text-xl font-bold text-gray-900">Creep - Radiohead (Cover)</h3>
+                        <p class="text-gray-500 text-sm">Vocal performance</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <a href="https://soundcloud.com/angel-rajotia" target="_blank" class="inline-flex items-center gap-2 text-blue-600 font-bold hover:underline">
+                    Listen to more on SoundCloud &rarr;
+                </a>
+            </div>
+        </section>
+        
+        <!-- Moved Section: Experience (Work + Volunteering) after Projects for better projects visibility-->
+        <!-- Section 2: Experience (Work + Volunteering) -->
+        <!-- NEW: Added fade-in-section class -->
+        <section id="experience" class="mb-16 md:mb-24 scroll-mt-20 fade-in-section">
+            <!-- NEW: Added border for visual hierarchy -->
+            <h2 class="text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-200">Experience</h2>
+            
+            <!-- 
+              NEW: Resume Download Link
+              - Paste your public resume link in the `href="..."` attribute below.
+            -->
+            <a href="https://drive.google.com/file/d/11iOZT5zV-DFu6JtkFlIn1E5sXQ4yiFY6/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block text-blue-600 font-medium hover:underline mb-8">
+                View my resume here &rarr;
+            </a>
+            
+            <!-- Work Experience Subsection -->
+            <h3 class="text-2xl font-semibold text-gray-800 mt-12 mb-6">Work Experience Highlights</h3>
+            <div class="space-y-5">
+                
+                <!-- 
+                  WORK EXPERIENCE ITEM 1
+                  - Copy this whole <article> block to add another job.
+                  - Delete it to remove.
+                -->
+                <article>
+                    <h4 class="text-xl font-semibold text-gray-900">AMD (Advanced Micro-Devices)</h4>
+                    <p class="text-lg text-blue-600 mb-2">Software Program Management Analyst Co-op &bull; May 2024 - Aug 2025</p>
+                    <p class="text-sm text-gray-500 mb-3">
+                        Skills: Python, SQL, AI-Automation, Jira, Confluence, Agile Methodologies, Data Analysis
+                    </p>
+                    <ul class="list-disc list-outside ml-5 space-y-2 text-gray-700">
+                        <li>Led strategic competitive analysis for Adrenalin AI vs. NVIDIA G-Assist, presenting insights to AMD’s Chief Software Officer to influence product direction.</li>
+                        <li>Built AI-powered automation pipelines using Python and SQL to auto-generate release note templates, reducing manual reporting effort by ~70%.</li>
+                        <li>Coordinated cross-functional delivery across product, engineering, QA, and marketing teams to improve release readiness and reporting accuracy by ~20%.</li>
+                    </ul>
+                </article>
+
+                <!-- 
+                  WORK EXPERIENCE ITEM 2
+                  - This is a second example. Edit, copy, or delete as needed.
+                -->
+                <article>
+                    <h4 class="text-xl font-semibold text-gray-900">Transform HF, Ted Rogers Center for Heart Research (UHN) and University of Toronto</h4>
+                    <p class="text-lg text-blue-600 mb-2">Healthcare UX Research Fellow &bull; May 2023 - Aug 2023</p>
+                    <p class="text-sm text-gray-500 mb-3">
+                        Skills: Figma, UX Research, Usability Testing, Journey Mapping, Healthcare UX, Scenario-Based Design
+                    </p>
+                    <p class="text-sm text-blue-600 mb-3">
+                        <a href="https://link.springer.com/chapter/10.1007/978-3-031-61966-3_32" target="_blank" class="underline hover:text-blue-800">
+                            Find my publication here →
+                        </a>
+                    </p>
+                    <ul class="list-disc list-outside ml-5 space-y-2 text-gray-700">
+                        <li>Led user interviews with clinicians and patients, translating insights into journey maps that shaped pilot design requirements.</li>
+                        <li>Facilitated design thinking and usability testing workshops to guide development of a post-discharge heart failure care solution.</li>
+                        <li>Created high-fidelity Figma prototypes focused on accessibility and engagement for vulnerable heart failure patient groups.</li>
+                    </ul>
+                </article>
+            </div>
+            
+            
+            <!-- Volunteering Subsection -->
+            <!--
+            <h3 class="text-2xl font-semibold text-gray-800 mt-12 mb-6">Volunteering</h3>
+            <div class="space-y-10">
+                <article>
+                    <h4 class="text-xl font-semibold text-gray-900">University of Toronto Pearson Scholarship Program</h4>
+                    <p class="text-lg text-blue-600 mb-2">Pearson Committee Co-Chair &bull; Jul 2025 – Present</p>
+                    <ul class="list-disc list-outside ml-5 space-y-2 text-gray-700">
+                        <li>Leading strategic planning for a $10K+ annual fund to support community initiatives and scholar programming.</li>
+                        <li>Building cross-cohort mentorship and leadership development initiatives for a community of 330+ Pearson Scholars.</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h4 class="text-xl font-semibold text-gray-900">You’re Next Career Network (YNCN), University of Toronto</h4>
+                    <p class="text-lg text-blue-600 mb-2">Business Development Associate &bull; Apr 2023 – Apr 2025</p>
+                    <ul class="list-disc list-outside ml-5 space-y-2 text-gray-700">
+                        <li>Secured 30+ corporate partnerships and secured $50K+ in revenue to support career events for 8,000+ students.</li>
+                        <li>Developed sponsorship strategies and collaborated with cross-functional teams to grow employer engagement.</li>
+                    </ul>
+                </article>
+
+            </div> -->
+        </section>
+
+
+
+        <!-- Section 5: Mentorship -->
+        <!-- NEW: Added fade-in-section class -->
+        <section id="mentorship" class="mb-16 md:mb-24 scroll-mt-20 text-center bg-blue-50 p-10 rounded-lg border border-blue-200 fade-in-section">
+            <!-- NEW: Added border for visual hierarchy -->
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 pb-2 border-b-2 border-blue-200 inline-block">Mentorship & Guidance</h2>
+            <p class="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
+                Looking for guidance on your career, help with applications, or a resume review? 
+                I offer 1-on-1 sessions to help you navigate your journey. <br>
+                <strong>Please send me a message on LinkedIn to schedule a session!</strong>
+            </p>
+            <!-- 
+              BOOKING LINK
+              - Sign up for a free service like Calendly.
+              - Get your public booking link.
+              - Paste the link in the `href="..."` attribute below.
+            -->
+            <!-- NEW: Added hover effect -->
+            <a href="https://www.linkedin.com/in/angel-rajotia/" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md font-medium text-lg hover:bg-blue-700 transition-all transform hover:scale-105">
+                Book a 1:1 Session (coming soon) 
+            </a>
+        </section>
+        
+
+
     </main>
 
     <!-- Footer -->
@@ -600,28 +626,27 @@
         </div>
     </footer>
 
-    <!-- UPDATED: JavaScript for Mobile Menu & Animations -->
+    <!-- JavaScript for Mobile Menu & Animations -->
     <script>
-        // --- Mobile Menu Logic ---
         const menuBtn = document.getElementById('menu-btn');
         const closeBtn = document.getElementById('close-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        // Open menu
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('-translate-x-full');
+            document.body.style.overflow = 'hidden'; // Prevent scroll when menu open
         });
 
-        // Close menu
         closeBtn.addEventListener('click', () => {
             mobileMenu.classList.add('-translate-x-full');
+            document.body.style.overflow = '';
         });
 
-        // Close menu when a link is clicked (for smooth scrolling)
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('-translate-x-full');
+                document.body.style.overflow = '';
             });
         });
 
@@ -636,8 +661,8 @@
                 "Community Builder",
                 "UX Researcher",
                 "Product Designer",
-                "UX Researcher",
                 "Traveller",
+                "Engineering Student",
                 "Creative Mentor",
                 "Videographer",
                 "Basketball Player",
