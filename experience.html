@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experience — Angel Rajotia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root{--cream:#FAF8F5;--charcoal:#1A1A1A;--copper:#B87333;--copper-light:#D4A574;--rose:#B87F93;--rose-light:#D4A5B5;--rose-muted:#E8C9D4;--rose-blush:#F5EBF0;--gray:#6B6B6B;--gray-light:#E8E6E3;--white:#FFFFFF;--serif:'Newsreader',Georgia,serif;--sans:'DM Sans',-apple-system,sans-serif;--ease:cubic-bezier(0.4,0,0.2,1);}
+    body.dark{--cream:#0E0E14;--charcoal:#F0EDE8;--gray:#9A9299;--gray-light:#1E1C28;--white:#17151F;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--cream);color:var(--charcoal);font-family:var(--sans);overflow-x:hidden;transition:background .4s var(--ease),color .4s var(--ease);}
+    ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--cream);}::-webkit-scrollbar-thumb{background:var(--gray-light);border-radius:3px;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.375rem 3.5rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(250,248,245,.85);border-bottom:1px solid rgba(0,0,0,.05);transition:background .4s var(--ease);}
+    body.dark nav{background:rgba(14,14,20,.88);border-bottom-color:rgba(255,255,255,.05);}
+    .nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:var(--charcoal);text-decoration:none;letter-spacing:-.02em;}
+    .nav-links{display:flex;align-items:center;gap:2.25rem;list-style:none;}
+    .nav-links a{font-size:.8125rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--gray);text-decoration:none;position:relative;transition:color .2s;}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--rose);transition:width .3s var(--ease);}
+    .nav-links a:hover,.nav-links a.act{color:var(--charcoal);}.nav-links a:hover::after,.nav-links a.act::after{width:100%;}
+    .contact-wrap{position:relative;}
+    .nav-cta{font-size:.8rem;font-weight:600;letter-spacing:.05em;color:var(--charcoal)!important;border:1.5px solid var(--charcoal);padding:.45rem 1.125rem;border-radius:50px;cursor:pointer;transition:all .3s var(--ease)!important;background:transparent;font-family:var(--sans);display:flex;align-items:center;gap:.4rem;}
+    .nav-cta::after{display:none!important;}.nav-cta:hover,.nav-cta.open{background:var(--charcoal)!important;color:var(--cream)!important;}
+    .nav-cta .arr{transition:transform .3s var(--ease);font-size:.65rem;display:inline-block;}.nav-cta.open .arr{transform:rotate(180deg);}
+    .contact-menu{position:absolute;top:calc(100% + .75rem);right:0;background:var(--white);border:1px solid var(--gray-light);border-radius:14px;padding:.625rem;min-width:196px;box-shadow:0 12px 32px rgba(0,0,0,.1);opacity:0;pointer-events:none;transform:translateY(-8px);transition:all .3s var(--ease);}
+    .contact-menu.open{opacity:1;pointer-events:auto;transform:translateY(0);}
+    body.dark .contact-menu{background:#1A1826;border-color:rgba(255,255,255,.08);}
+    .contact-menu a{display:flex;align-items:center;gap:.75rem;padding:.55rem .825rem;border-radius:8px;font-size:.875rem;font-weight:500;color:var(--charcoal);text-decoration:none;transition:background .2s;letter-spacing:0;}
+    .contact-menu a:hover{background:var(--rose-blush);color:var(--rose);}
+    body.dark .contact-menu a:hover{background:rgba(184,127,147,.15);}
+    .contact-menu a .ico{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-size:.9rem;background:var(--gray-light);flex-shrink:0;}
+    .theme-pill{background:var(--gray-light);border:none;border-radius:50px;padding:.3rem;display:flex;gap:.2rem;}
+    .tbtn{width:28px;height:28px;border-radius:50px;border:none;background:transparent;cursor:pointer;font-size:.875rem;display:flex;align-items:center;justify-content:center;transition:background .3s var(--ease);}
+    .tbtn.active{background:var(--white);box-shadow:0 2px 6px rgba(0,0,0,.1);}
+    body.dark .tbtn.active{background:#2a2838;}
+
+    /* PAGE */
+    .pg-hero{padding:12rem 3.5rem 5rem;}
+    .s-label{font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);margin-bottom:.875rem;}
+    .pg-title{font-family:var(--serif);font-size:clamp(3rem,7vw,5.5rem);font-weight:400;line-height:1.07;letter-spacing:-.03em;margin-bottom:1.5rem;}
+    .pg-sub{font-size:1.0625rem;color:var(--gray);max-width:600px;line-height:1.7;margin-bottom:1.5rem;}
+    .resume-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:600;color:var(--rose);text-decoration:none;transition:gap .3s var(--ease);}
+    .resume-link:hover{gap:.875rem;}
+
+    /* ROLES BAR */
+    .roles-bar{padding:2.5rem 3.5rem;border-top:1px solid var(--gray-light);border-bottom:1px solid var(--gray-light);display:flex;gap:2.25rem;flex-wrap:wrap;align-items:center;}
+    .role-chip{font-family:var(--serif);font-size:1.375rem;font-weight:400;font-style:italic;color:var(--gray);letter-spacing:-.01em;}
+    .role-chip.hl{color:var(--charcoal);}
+    .role-sep{color:var(--gray-light);}
+
+    /* MAIN TIMELINE */
+    .exp-main{padding:5rem 3.5rem 8rem;max-width:1100px;}
+    .exp-group{margin-bottom:5rem;}
+    .group-label{font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);margin-bottom:1.75rem;padding-bottom:.875rem;border-bottom:1px solid var(--gray-light);}
+
+    .exp-row{display:grid;grid-template-columns:200px 1fr;gap:2.5rem;padding:2.5rem 0;border-bottom:1px solid rgba(0,0,0,.05);align-items:start;transition:padding-left .3s var(--ease);}
+    body.dark .exp-row{border-bottom-color:rgba(255,255,255,.05);}
+    .exp-row:last-child{border-bottom:none;}
+    .exp-row:hover{padding-left:.5rem;}
+    .exp-date{font-size:.875rem;color:var(--gray);line-height:1.5;}
+    .exp-body h3{font-family:var(--serif);font-size:1.5rem;font-weight:500;letter-spacing:-.02em;margin-bottom:.25rem;}
+    .exp-org{font-size:.9375rem;color:var(--rose);font-weight:500;margin-bottom:.875rem;}
+    .exp-desc{font-size:1rem;color:var(--gray);line-height:1.7;margin-bottom:.875rem;}
+    .exp-bullets{padding-left:1.25rem;margin-bottom:1.125rem;}
+    .exp-bullets li{font-size:.9375rem;color:var(--gray);margin-bottom:.4rem;line-height:1.6;}
+    .exp-bullets li strong{color:var(--charcoal);font-weight:500;}
+    .exp-skills{display:flex;flex-wrap:wrap;gap:.4rem;}
+    .eskill{font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;background:var(--gray-light);color:var(--gray);}
+    body.dark .eskill{background:var(--gray-light);color:var(--gray);}
+
+    /* EDUCATION */
+    .edu-section{background:var(--charcoal);padding:6rem 3.5rem;color:var(--cream);}
+    body.dark .edu-section{background:#08080E;}
+    .edu-section .s-label{color:var(--rose-light);}
+    .edu-heading{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:400;letter-spacing:-.02em;color:var(--cream);margin-bottom:3rem;}
+    .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+    .edu-card{border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:2rem;}
+    body.dark .edu-card{border-color:rgba(255,255,255,.08);}
+    .edu-degree{font-family:var(--serif);font-size:1.375rem;font-weight:500;color:var(--cream);margin-bottom:.25rem;}
+    .edu-school{font-size:.9375rem;color:var(--rose-light);font-weight:500;margin-bottom:.25rem;}
+    .edu-year{font-size:.8125rem;color:rgba(250,248,245,.4);margin-bottom:1rem;}
+    .edu-notes{font-size:.9rem;color:rgba(250,248,245,.6);line-height:1.6;}
+    .edu-badge{display:inline-block;margin-top:1rem;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgba(184,127,147,.2);color:var(--rose-light);padding:.3rem .875rem;border-radius:50px;border:1px solid rgba(184,127,147,.3);}
+    .courses{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem;}
+    .course{font-size:.75rem;background:rgba(255,255,255,.07);color:rgba(250,248,245,.6);padding:.25rem .7rem;border-radius:50px;}
+
+    /* ACTIVITIES */
+    .activities-section{padding:5rem 3.5rem 6rem;}
+    .activities-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin-top:1.5rem;}
+    .act-item{padding:.875rem 1rem;border-radius:8px;font-size:.9375rem;color:var(--gray);background:var(--white);border:1px solid rgba(0,0,0,.04);}
+    body.dark .act-item{background:var(--white);border-color:rgba(255,255,255,.05);}
+    .act-item::before{content:'·';color:var(--rose);margin-right:.5rem;font-weight:700;}
+
+    /* CTA */
+    .exp-cta{padding:6rem 3.5rem;text-align:center;border-top:1px solid var(--gray-light);}
+    .cta-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;letter-spacing:-.02em;margin-bottom:1.5rem;}
+    .cta-title em{font-style:italic;color:var(--rose);}
+    .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 2rem;border-radius:50px;font-size:.9375rem;font-weight:600;text-decoration:none;transition:all .3s var(--ease);border:none;cursor:pointer;font-family:var(--sans);}
+    .btn-primary{background:var(--charcoal);color:var(--cream);}
+    .btn-primary:hover{background:var(--rose);transform:translateY(-2px);box-shadow:0 8px 24px rgba(184,127,147,.3);}
+    .btn-secondary{background:transparent;color:var(--charcoal);border:1.5px solid var(--gray-light);}
+    .btn-secondary:hover{border-color:var(--charcoal);transform:translateY(-2px);}
+
+    .fi{opacity:0;transform:translateY(36px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+    .fi.v{opacity:1;transform:translateY(0);}
+
+    footer{border-top:1px solid var(--gray-light);padding:2.5rem 3.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;}
+    .footer-logo{font-family:var(--serif);font-size:1.2rem;color:var(--charcoal);text-decoration:none;}
+    .flinks{display:flex;gap:1.75rem;list-style:none;}
+    .flinks a{font-size:.875rem;color:var(--gray);text-decoration:none;transition:color .2s;}.flinks a:hover{color:var(--charcoal);}
+    .fcopy{font-size:.8125rem;color:var(--gray);}
+
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+
+    @media(max-width:860px){
+      nav{padding:1.25rem 1.5rem;}.nav-links{display:none;}
+      .pg-hero{padding:8rem 1.5rem 4rem;}
+      .roles-bar{padding:2rem 1.5rem;}
+      .exp-main,.activities-section,.edu-section,.exp-cta{padding:4rem 1.5rem;}
+      .exp-row{grid-template-columns:1fr;}
+      .edu-grid,.activities-grid{grid-template-columns:1fr;}
+      footer{flex-direction:column;padding:2rem 1.5rem;text-align:center;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">AR</a>
+  <ul class="nav-links">
+    <li><a href="case-studies.html">Case Studies</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="experience.html" class="act">Experience</a></li>
+    <li class="contact-wrap">
+      <button class="nav-cta" id="cBtn" aria-haspopup="true" aria-expanded="false">Get in Touch <span class="arr">▾</span></button>
+      <div class="contact-menu" id="cMenu" role="menu">
+        <a href="mailto:angel.rajotia@mail.utoronto.ca" role="menuitem"><span class="ico">✉️</span>Email</a>
+        <a href="https://www.linkedin.com/in/angel-rajotia/" target="_blank" rel="noopener" role="menuitem"><span class="ico">💼</span>LinkedIn</a>
+        <a href="https://www.instagram.com/angelrajotia" target="_blank" rel="noopener" role="menuitem"><span class="ico">📸</span>Instagram</a>
+        <a href="https://x.com/angelrajotia" target="_blank" rel="noopener" role="menuitem"><span class="ico">𝕏</span>Twitter / X</a>
+      </div>
+    </li>
+    <li><div class="theme-pill"><button class="tbtn active" id="lBtn">☀️</button><button class="tbtn" id="dBtn">🌙</button></div></li>
+  </ul>
+</nav>
+
+<div class="pg-hero">
+  <p class="s-label" style="animation:fadeUp .8s var(--ease) .2s both;opacity:0">Experience</p>
+  <h1 class="pg-title" style="animation:fadeUp .8s var(--ease) .35s both;opacity:0">Industrial engineering student.<br>UX Researcher. Program Manager.</h1>
+  <p class="pg-sub" style="animation:fadeUp .8s var(--ease) .5s both;opacity:0">A collection of roles, projects, and moments that have shaped how I think and work.</p>
+  <a href="https://drive.google.com/file/d/11iOZT5zV-DFu6JtkFlIn1E5sXQ4yiFY6/view?usp=sharing" target="_blank" class="resume-link" style="animation:fadeUp .8s var(--ease) .65s both;opacity:0">View my resume →</a>
+</div>
+
+<div class="roles-bar fi">
+  <span class="role-chip hl">Student</span><span class="role-sep">·</span>
+  <span class="role-chip hl">Researcher</span><span class="role-sep">·</span>
+  <span class="role-chip hl">Designer</span><span class="role-sep">·</span>
+  <span class="role-chip">Community Builder</span><span class="role-sep">·</span>
+  <span class="role-chip">Program Manager</span><span class="role-sep">·</span>
+  <span class="role-chip">Mentor</span>
+</div>
+
+<div class="exp-main">
+
+  <div class="exp-group fi">
+    <p class="group-label">Work Experience</p>
+
+    <div class="exp-row" id="amd">
+      <div class="exp-date">May 2024 — Aug 2025<br><span style="font-size:.8rem">AMD, Toronto</span></div>
+      <div class="exp-body">
+        <h3>Software Program Management Analyst Co-op</h3>
+        <p class="exp-org">AMD (Advanced Micro-Devices)</p>
+        <ul class="exp-bullets">
+          <li>Led <strong>strategic competitive analysis</strong> for Adrenalin AI vs. NVIDIA G-Assist, presenting insights to AMD's Chief Software Officer to influence product direction.</li>
+          <li>Built <strong>AI-powered automation pipelines</strong> using Python and SQL to auto-generate release note templates, reducing manual reporting effort by ~70%.</li>
+          <li>Coordinated cross-functional delivery across product, engineering, QA, and marketing teams to improve release readiness and reporting accuracy by ~20%.</li>
+        </ul>
+        <div class="exp-skills">
+          <span class="eskill">Python</span><span class="eskill">SQL</span><span class="eskill">AI Automation</span>
+          <span class="eskill">Jira</span><span class="eskill">Confluence</span><span class="eskill">Agile</span><span class="eskill">Data Analysis</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-date">May 2023 — Aug 2023<br><span style="font-size:.8rem">UHN / UofT</span></div>
+      <div class="exp-body">
+        <h3>Healthcare UX Research Fellow</h3>
+        <p class="exp-org">Transform HF, Ted Rogers Centre for Heart Research (UHN) & University of Toronto</p>
+        <p class="exp-desc">Designing digital interventions for vulnerable patients at Canada's leading heart failure research centre.</p>
+        <ul class="exp-bullets">
+          <li>Led <strong>user interviews with clinicians and patients</strong>, translating insights into journey maps that shaped pilot design requirements.</li>
+          <li>Facilitated <strong>design thinking and usability testing workshops</strong> to guide development of a post-discharge heart failure care solution.</li>
+          <li>Created high-fidelity Figma prototypes focused on accessibility and engagement for vulnerable patient groups.</li>
+          <li>Research <strong>published in Springer</strong> at HCI International 2024: <a href="https://link.springer.com/chapter/10.1007/978-3-031-61966-3_32" target="_blank" style="color:var(--rose);text-decoration:none">view publication →</a></li>
+        </ul>
+        <div class="exp-skills">
+          <span class="eskill">UX Research</span><span class="eskill">Figma</span><span class="eskill">Usability Testing</span>
+          <span class="eskill">Journey Mapping</span><span class="eskill">Healthcare UX</span><span class="eskill">Academic Writing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-group fi">
+    <p class="group-label">Leadership & Community</p>
+
+    <div class="exp-row">
+      <div class="exp-date">Jul 2025 — Present</div>
+      <div class="exp-body">
+        <h3>Pearson Committee Co-Chair</h3>
+        <p class="exp-org">University of Toronto Pearson Scholarship Program</p>
+        <ul class="exp-bullets">
+          <li>Leading strategic planning for a $10K+ annual fund to support community initiatives and scholar programming.</li>
+          <li>Building cross-cohort mentorship and leadership development initiatives for a community of 330+ Pearson Scholars.</li>
+        </ul>
+        <div class="exp-skills"><span class="eskill">Leadership</span><span class="eskill">Strategic Planning</span><span class="eskill">Community Building</span></div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-date">Apr 2023 — Apr 2025</div>
+      <div class="exp-body">
+        <h3>Business Development Associate</h3>
+        <p class="exp-org">You're Next Career Network (YNCN), University of Toronto</p>
+        <ul class="exp-bullets">
+          <li>Secured <strong>30+ corporate partnerships</strong> and $50K+ in revenue to support career events for 8,000+ students.</li>
+          <li>Developed sponsorship strategies and collaborated with cross-functional teams to grow employer engagement.</li>
+        </ul>
+        <div class="exp-skills"><span class="eskill">Business Development</span><span class="eskill">Partnerships</span><span class="eskill">Sponsorship</span></div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-date">2023 — Present</div>
+      <div class="exp-body">
+        <h3>Mentor</h3>
+        <p class="exp-org">MIE Mentorship Program · Pearson Mentorship Program</p>
+        <ul class="exp-bullets">
+          <li>Supporting incoming engineering students navigating the transition to university life and exploring careers in design and tech.</li>
+        </ul>
+        <div class="exp-skills"><span class="eskill">Mentorship</span><span class="eskill">Career Coaching</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- EDUCATION -->
+<section class="edu-section fi">
+  <p class="s-label">Education</p>
+  <h2 class="edu-heading">Where it all started</h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <h3 class="edu-degree">BASc, Industrial Engineering</h3>
+      <p class="edu-school">University of Toronto</p>
+      <p class="edu-year">2022 — Graduating June 2026</p>
+      <p class="edu-notes"><strong style="color:rgba(250,248,245,.85)">Minors:</strong> Artificial Intelligence Engineering, Engineering Business</p>
+      <div class="courses">
+        <span class="course">Human-Centered System Design</span>
+        <span class="course">AI Engineering</span>
+        <span class="course">Data Analytics</span>
+        <span class="course">Deep Learning</span>
+        <span class="course">Engineering Psychology</span>
+        <span class="course">Operations Research</span>
+        <span class="course">Supply Chain Management</span>
+      </div>
+      <span class="edu-badge">🏆 Lester B. Pearson International Scholar</span>
+    </div>
+    <div class="edu-card">
+      <h3 class="edu-degree" style="color:rgba(250,248,245,.85)">Activities & Societies</h3>
+      <p class="edu-school">Campus Involvement</p>
+      <p class="edu-year">2022 — Present</p>
+      <div class="courses" style="margin-top:.5rem">
+        <span class="course">You're Next Career Network</span>
+        <span class="course">Pearson Social Committee Co-Chair</span>
+        <span class="course">Pearson Mentorship Program</span>
+        <span class="course">UofT WHEEL Lab Volunteer Researcher</span>
+        <span class="course">Transform HF (UHN) Trainee</span>
+        <span class="course">MIE Mentorship Program</span>
+        <span class="course">Skule Intramural Basketball</span>
+        <span class="course">UTESCA Consulting</span>
+        <span class="course">HFIG Human Factors</span>
+        <span class="course">Skule F!rosh Leedur</span>
+        <span class="course">WISE</span>
+        <span class="course">UofT Musical Design Team Co-Founder, President</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="exp-cta fi">
+  <h2 class="cta-title">Want to work <em>together?</em></h2>
+  <div class="cta-btns">
+    <a href="mailto:angel.rajotia@mail.utoronto.ca" class="btn btn-primary">Get in touch</a>
+    <a href="index.html#work" class="btn btn-secondary">See my work →</a>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo">Angel Rajotia</a>
+  <ul class="flinks">
+    <li><a href="case-studies.html">Case Studies</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="experience.html">Experience</a></li>
+  </ul>
+  <p class="fcopy">© 2025 Angel Rajotia</p>
+</footer>
+
+<style>@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}</style>
+<script>
+  const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('v'),i*80);obs.unobserve(e.target);}});},{threshold:.08});
+  document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+  const lb=document.getElementById('lBtn'),db=document.getElementById('dBtn');
+  function setTheme(d){document.body.classList.toggle('dark',d);lb.classList.toggle('active',!d);db.classList.toggle('active',d);localStorage.setItem('theme',d?'dark':'light');}
+  lb.addEventListener('click',()=>setTheme(false));db.addEventListener('click',()=>setTheme(true));
+  if(localStorage.getItem('theme')==='dark')setTheme(true);
+  const cb=document.getElementById('cBtn'),cm=document.getElementById('cMenu');
+  cb.addEventListener('click',e=>{e.stopPropagation();const o=cm.classList.toggle('open');cb.classList.toggle('open',o);cb.setAttribute('aria-expanded',o);});
+  document.addEventListener('click',()=>{cm.classList.remove('open');cb.classList.remove('open');});
+  cm.addEventListener('click',e=>e.stopPropagation());
+</script>
+</body>
+</html>
