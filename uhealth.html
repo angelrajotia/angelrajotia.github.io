@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     :root{
-      --cream:#FAF8F5;--charcoal:#1A1A1A;--copper:#B87333;--copper-light:#D4A574;
+      --cream:#FAF8F5;--charcoal:#1A1A1A;--copper:hsl(29, 57%, 46%);--copper-light:#D4A574;
       --rose:#B87F93;--rose-light:#D4A5B5;--rose-muted:#E8C9D4;--rose-blush:#F5EBF0;
       --gray:#6B6B6B;--gray-light:#E8E6E3;--white:#FFFFFF;--indigo:#6366F1;
       --serif:'Newsreader',Georgia,serif;--sans:'DM Sans',-apple-system,sans-serif;
@@ -208,6 +208,8 @@
     .figma-cta h3{font-family:var(--serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:var(--cream);margin-bottom:.875rem;letter-spacing:-.02em;}
     .figma-cta h3 em{font-style:italic;color:var(--rose-light);}
     .figma-cta p{font-size:1rem;color:rgba(250,248,245,.55);margin-bottom:2rem;}
+    body.dark .figma-cta h3{color:#F0EDE8;}
+    body.dark .figma-cta p{color:rgba(240,237,232,.55);}
     .figma-btn{
       display:inline-flex;align-items:center;gap:.75rem;
       background:var(--white);color:var(--charcoal);
