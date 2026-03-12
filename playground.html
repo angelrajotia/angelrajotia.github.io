@@ -88,13 +88,14 @@
     .blog-link:hover{color:var(--rose);}
 
     /* PHOTOGRAPHY MARQUEE */
-    .photo-marquee-outer{overflow:hidden;margin:2rem 0;cursor:pointer;}
-    .photo-marquee-track{display:flex;gap:1rem;width:max-content;animation:marqueeScroll 30s linear infinite;}
-    .photo-marquee-track:hover{animation-play-state:paused;}
-    @keyframes marqueeScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+    .photo-marquee-outer{overflow:hidden;margin:2rem 0;cursor:grab;position:relative;-webkit-user-select:none;user-select:none;}
+    .photo-marquee-outer.dragging{cursor:grabbing;}
+    .photo-marquee-outer.dragging .photo-thumb{pointer-events:none;}
+    .photo-marquee-track{display:flex;gap:1.25rem;width:max-content;will-change:transform;}
 
-    .photo-thumb{flex-shrink:0;width:220px;height:280px;border-radius:14px;overflow:hidden;background:var(--gray-light);cursor:zoom-in;transition:transform .3s var(--ease);}
+    .photo-thumb{flex-shrink:0;width:320px;height:240px;border-radius:14px;overflow:hidden;background:var(--gray-light);cursor:zoom-in;transition:transform .3s var(--ease);}
     .photo-thumb:hover{transform:scale(1.03);}
+    .photo-thumb img.photo-thumb-img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
     .photo-thumb-fill{width:100%;height:100%;display:flex;align-items:flex-end;padding:.875rem;font-size:.8rem;font-weight:500;color:rgba(255,255,255,.85);}
     .pt1{background:linear-gradient(145deg,#C8C0B8,#A8A098);}
     .pt2{background:linear-gradient(145deg,#B8C8C0,#98B8B0);}
@@ -349,6 +350,85 @@
   plbClose.addEventListener('click',closePlb);
   plb.addEventListener('click',e=>{if(e.target===plb)closePlb();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closePlb();});
+
+  // ── Marquee: auto-scroll + drag to scrub ──
+  (function(){
+    const outer=document.querySelector('.photo-marquee-outer');
+    const track=document.getElementById('marqueeTrack');
+    if(!outer||!track) return;
+
+    const SPEED=1.0;          // px per frame at full speed
+    const HOVER_SPEED=0.3;   // slower on hover
+    let offset=0;
+    let hovered=false;
+    let dragging=false;
+    let dragStartX=0;
+    let dragStartOffset=0;
+    let didDrag=false;
+    let halfWidth=0;
+
+    function measureHalf(){
+      // half the track = width of original set (before duplicate)
+      halfWidth=track.scrollWidth/2;
+    }
+
+    function tick(){
+      if(!dragging){
+        offset-=(hovered?HOVER_SPEED:SPEED);
+        if(offset<=-halfWidth) offset+=halfWidth;
+        if(offset>0) offset-=halfWidth;
+      }
+      track.style.transform=`translateX(${offset}px)`;
+      requestAnimationFrame(tick);
+    }
+
+    // Wait for images to settle, then measure
+    requestAnimationFrame(()=>{measureHalf();tick();});
+    window.addEventListener('resize',measureHalf);
+
+    // Hover slow-down
+    outer.addEventListener('mouseenter',()=>hovered=true);
+    outer.addEventListener('mouseleave',()=>{hovered=false;dragging=false;outer.classList.remove('dragging');});
+
+    // Drag to scrub (mouse)
+    outer.addEventListener('mousedown',e=>{
+      dragging=true;didDrag=false;
+      dragStartX=e.clientX;dragStartOffset=offset;
+      outer.classList.add('dragging');
+    });
+    window.addEventListener('mousemove',e=>{
+      if(!dragging) return;
+      const dx=e.clientX-dragStartX;
+      if(Math.abs(dx)>4) didDrag=true;
+      offset=dragStartOffset+dx;
+      // wrap
+      if(offset<=-halfWidth) offset+=halfWidth;
+      if(offset>0) offset-=halfWidth;
+    });
+    window.addEventListener('mouseup',()=>{
+      if(dragging){dragging=false;outer.classList.remove('dragging');}
+    });
+
+    // Drag to scrub (touch)
+    outer.addEventListener('touchstart',e=>{
+      dragging=true;didDrag=false;
+      dragStartX=e.touches[0].clientX;dragStartOffset=offset;
+    },{passive:true});
+    outer.addEventListener('touchmove',e=>{
+      if(!dragging) return;
+      const dx=e.touches[0].clientX-dragStartX;
+      if(Math.abs(dx)>4) didDrag=true;
+      offset=dragStartOffset+dx;
+      if(offset<=-halfWidth) offset+=halfWidth;
+      if(offset>0) offset-=halfWidth;
+    },{passive:true});
+    outer.addEventListener('touchend',()=>{dragging=false;});
+
+    // Prevent lightbox opening after a drag gesture
+    outer.addEventListener('click',e=>{
+      if(didDrag){e.stopPropagation();e.preventDefault();}
+    },true);
+  })();
 </script>
 </body>
 </html>
