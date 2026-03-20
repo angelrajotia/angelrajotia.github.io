@@ -100,16 +100,28 @@
   .item-body a:hover { color: var(--copper); }
 
   .media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0 2rem; }
-  .media-card { background: white; border-radius: 12px; border: 1px solid var(--gray-light); overflow: hidden; transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+  .media-card { background: white; border-radius: 12px; border: 1px solid var(--gray-light); overflow: hidden; transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer; }
   .media-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-  .media-card-embed { width: 100%; aspect-ratio: 1/1; overflow: hidden; position: relative; background: #f5f5f5; }
-  .media-card-embed iframe { position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; border: none; transform: translate(-50%, -50%) scale(0.5); transform-origin: center center; }
+  .media-card-embed { width: 100%; aspect-ratio: 1/1; overflow: hidden; position: relative; background: #f5f5f5; pointer-events: none; }
+  .media-card-embed iframe { position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; border: none; transform: translate(-50%, -50%) scale(0.5); transform-origin: center center; pointer-events: none; }
+  /* Click-to-expand overlay on embed cards */
+  .media-card-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(26,26,26,0.15); opacity: 0; transition: opacity 0.3s var(--ease); z-index: 2; pointer-events: none; }
+  .media-card:hover .media-card-overlay { opacity: 1; }
+  .media-card-overlay .expand-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.92); box-shadow: 0 4px 16px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--charcoal); }
   .media-card-visual { width: 100%; aspect-ratio: 1/1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; background: linear-gradient(135deg, var(--rose-blush), #FDF3E7); }
   .media-card-visual .icon { font-size: 2rem; }
   .media-card-visual .card-title { font-family: 'Newsreader', serif; font-size: 1rem; font-weight: 500; color: var(--charcoal); text-align: center; padding: 0 1rem; }
   .media-card-info { padding: 0.75rem 1rem; }
   .media-card-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.2rem; }
   .media-card-desc { font-size: 0.78rem; color: var(--gray-text); line-height: 1.45; }
+
+  /* Embed lightbox */
+  .embed-lightbox { display: none; position: fixed; inset: 0; z-index: 9998; background: rgba(26,26,26,0.88); backdrop-filter: blur(8px); align-items: center; justify-content: center; cursor: zoom-out; padding: 2rem; }
+  .embed-lightbox.active { display: flex; }
+  .embed-lightbox-inner { width: 90vw; max-width: 720px; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); animation: lbIn 0.25s var(--ease); }
+  .embed-lightbox-inner iframe { width: 100%; border: none; }
+  .embed-lightbox-close { position: fixed; top: 1.5rem; right: 1.5rem; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 9999; }
+  .embed-lightbox-close:hover { background: rgba(255,255,255,0.3); }
 
   .links-bar { margin: 3rem 0 2rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-light); display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
   .links-bar a { font-size: 0.85rem; font-weight: 500; text-decoration: none; transition: color 0.2s; }
@@ -134,6 +146,14 @@
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
   <img id="lightbox-img" src="" alt="Expanded screenshot">
+</div>
+
+<!-- Embed lightbox for YouTube / LinkedIn -->
+<div class="embed-lightbox" id="embedLightbox" onclick="closeEmbedLightbox(event)">
+  <button class="embed-lightbox-close" onclick="closeEmbedLightbox(event)">&times;</button>
+  <div class="embed-lightbox-inner" id="embedInner" onclick="event.stopPropagation()">
+    <!-- iframe injected dynamically -->
+  </div>
 </div>
 
 <nav class="nav">
@@ -268,7 +288,7 @@
   <div class="item">
     <div class="item-title">Shipping AI-Driven Products at Scale</div>
     <div class="item-org">AMD · Software Program Management</div>
-    <p class="item-body">As a Software PM, I drove cross-functional delivery of <strong>Adrenalin AI, AMD Chat, and other AI-driven products and internal tools</strong>, coordinating across product, engineering, QA, and marketing teams. Built AI-powered automation pipelines that cut manual reporting effort by ~70%. Presented work to AMD's Chief Software Officer (CSO) that influenced executive roadmap decisions.</p>
+    <p class="item-body">As a Software PM, I drove cross-functional delivery of <strong>Adrenalin AI, AMD Chat, and other AI-driven products and internal tools</strong>, coordinating across product, engineering, QA, and marketing teams. Built AI-powered automation pipelines that cut manual reporting effort by ~70%. Presented work to AMD's CEO that influenced executive roadmap decisions.</p>
   </div>
 
   <div class="item rose">
@@ -289,22 +309,24 @@
   <p class="equity-intro">My drive for equitable tech didn't start in a classroom.. it started on the ground in India and shaped everything I've built since.</p>
 
   <div class="media-grid">
-    <div class="media-card">
+    <div class="media-card" onclick="openEmbed('youtube')">
       <div class="media-card-embed">
-        <iframe src="https://www.youtube.com/embed/GU1nsyJZ_cI" allowfullscreen title="Cansbridge Fellowship"></iframe>
+        <iframe src="https://www.youtube.com/embed/GU1nsyJZ_cI" allowfullscreen title="Cansbridge Fellowship" tabindex="-1"></iframe>
+        <div class="media-card-overlay"><div class="expand-icon">▶</div></div>
       </div>
       <div class="media-card-info">
         <div class="media-card-label" style="color:var(--copper);">Cansbridge Fellowship</div>
-        <div class="media-card-desc">My global lens, NGO work, and drive for equitable tech.. in my own words.</div>
+        <div class="media-card-desc">My global lens, NGO work, and drive for equitable tech.. in my own words. <span style="color:var(--copper);font-weight:500;">Click to watch →</span></div>
       </div>
     </div>
-    <div class="media-card">
+    <div class="media-card" onclick="openEmbed('linkedin')">
       <div class="media-card-embed">
-        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7408354518226223104" allowfullscreen title="LinkedIn post"></iframe>
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7408354518226223104" allowfullscreen title="LinkedIn post" tabindex="-1"></iframe>
+        <div class="media-card-overlay"><div class="expand-icon">↗</div></div>
       </div>
       <div class="media-card-info">
         <div class="media-card-label" style="color:var(--rose);">Reflection Post — LinkedIn</div>
-        <div class="media-card-desc">What university has meant to me and why I build for people.</div>
+        <div class="media-card-desc">What university has meant to me and why I build for people. <span style="color:var(--rose);font-weight:500;">Click to read →</span></div>
       </div>
     </div>
     <a href="https://angelrajotia.com/uhealth.html" target="_blank" class="media-card">
@@ -334,9 +356,34 @@
 <footer>© 2025 <a href="https://angelrajotia.com">Angel Rajotia</a></footer>
 
 <script>
+// Image lightbox
 function openLightbox(img){const o=document.getElementById('lightbox'),i=document.getElementById('lightbox-img');i.src=img.src;i.alt=img.alt;o.classList.add('active');document.body.style.overflow='hidden';}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+
+// Embed lightbox (YouTube / LinkedIn)
+const embedSources = {
+  youtube: { src: 'https://www.youtube.com/embed/GU1nsyJZ_cI?autoplay=1', height: '405px' },
+  linkedin: { src: 'https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7408354518226223104', height: '600px' }
+};
+function openEmbed(type) {
+  const data = embedSources[type];
+  if (!data) return;
+  const inner = document.getElementById('embedInner');
+  inner.innerHTML = '<iframe src="' + data.src + '" style="width:100%;height:' + data.height + ';border:none;" allowfullscreen></iframe>';
+  document.getElementById('embedLightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeEmbedLightbox(e) {
+  if (e) e.stopPropagation();
+  const lb = document.getElementById('embedLightbox');
+  lb.classList.remove('active');
+  document.getElementById('embedInner').innerHTML = '';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeLightbox(); closeEmbedLightbox(); }
+});
 </script>
 </body>
 </html>
