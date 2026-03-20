@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proof of Impact — Angel Rajotia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF8F5;
+    --charcoal: #1A1A1A;
+    --copper: #B87333;
+    --copper-light: #D4A574;
+    --rose: #B87F93;
+    --rose-light: #D4A5B5;
+    --rose-muted: #E8C9D4;
+    --rose-blush: #F5EBF0;
+    --lavender: #B8A4C8;
+    --sage: #A4B8A8;
+    --gray-text: #6B6B6B;
+    --gray-light: #E8E6E3;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--charcoal); font-family: 'DM Sans', sans-serif; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,248,245,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-light); padding: 0.75rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .nav-logo { font-family: 'Newsreader', serif; font-size: 1.1rem; font-weight: 600; color: var(--charcoal); text-decoration: none; }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a { font-size: 0.85rem; color: var(--gray-text); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--charcoal); }
+
+  .hero { padding: 7rem 2rem 3rem; max-width: 860px; margin: 0 auto; }
+  .breadcrumb { font-size: 0.8rem; color: var(--gray-text); margin-bottom: 1.5rem; }
+  .breadcrumb a { color: var(--rose); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .tag { display: inline-block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.75rem; border-radius: 20px; }
+  .tag-rose { background: var(--rose-blush); color: var(--rose); }
+  .tag-copper { background: #FDF3E7; color: var(--copper); }
+  .tag-lavender { background: #F0EBF5; color: var(--lavender); }
+  .tag-sage { background: #EBF2EC; color: #6B8F6E; }
+
+  h1 { font-family: 'Newsreader', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 400; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1rem; }
+  h1 em { font-style: italic; color: var(--rose); }
+  .subtitle { font-size: 1.05rem; color: var(--gray-text); line-height: 1.7; max-width: 640px; }
+
+  .hero-image-area { margin: 2.5rem auto 0; max-width: 860px; padding: 0 2rem; }
+  .hero-image-placeholder { width: 100%; aspect-ratio: 2.2/1; border: 2px dashed var(--gray-light); border-radius: 16px; background: linear-gradient(135deg, #F0EDEA, #E8E6E3); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; }
+  .hero-image-placeholder span { font-size: 2rem; }
+  .hero-image-placeholder p { font-size: 0.85rem; color: var(--gray-text); font-weight: 500; }
+  .hero-image-placeholder small { font-size: 0.75rem; color: var(--rose-light); font-style: italic; }
+  .hero-image { width: 100%; border-radius: 16px; object-fit: cover; max-height: 380px; }
+
+  .content { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+  .section-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-text); padding-bottom: 0.75rem; border-bottom: 1px solid var(--gray-light); margin-bottom: 2rem; margin-top: 4rem; }
+  h2 { font-family: 'Newsreader', serif; font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 400; letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 0.75rem; }
+  h2 em { font-style: italic; color: var(--rose); }
+  .context-text { font-size: 1rem; color: var(--charcoal); line-height: 1.8; margin-bottom: 2rem; }
+  .context-text strong { font-weight: 600; }
+
+  .proof-block { margin-bottom: 2.5rem; padding-left: 1.25rem; border-left: 3px solid var(--copper); }
+  .proof-block.rose { border-left-color: var(--rose); }
+  .proof-block.lavender { border-left-color: var(--lavender); }
+  .proof-label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--copper); margin-bottom: 0.25rem; }
+  .proof-block.rose .proof-label { color: var(--rose); }
+  .proof-block.lavender .proof-label { color: var(--lavender); }
+  .proof-tagline { font-family: 'Newsreader', serif; font-size: 1rem; font-style: italic; color: var(--gray-text); margin-bottom: 0.75rem; }
+  .proof-quote { font-family: 'Newsreader', serif; font-size: 1.15rem; font-style: italic; color: var(--charcoal); line-height: 1.6; margin-bottom: 0.4rem; }
+  .proof-attribution { font-size: 0.85rem; font-weight: 600; color: var(--rose); margin-bottom: 1rem; }
+
+  .proof-screenshot { max-width: 100%; border-radius: 10px; border: 1px solid var(--gray-light); box-shadow: 0 4px 16px rgba(0,0,0,0.06); cursor: pointer; transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); }
+  .proof-screenshot:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .screenshot-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem; }
+  .screenshot-pair img { width: 100%; }
+
+  .lightbox-overlay { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(26,26,26,0.88); backdrop-filter: blur(8px); align-items: center; justify-content: center; cursor: zoom-out; padding: 2rem; }
+  .lightbox-overlay.active { display: flex; }
+  .lightbox-overlay img { max-width: 90vw; max-height: 90vh; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); animation: lbIn 0.25s var(--ease); }
+  @keyframes lbIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+  .lightbox-close { position: fixed; top: 1.5rem; right: 1.5rem; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .lightbox-close:hover { background: rgba(255,255,255,0.3); }
+
+  .photos-placeholder { margin: 3rem 0; padding: 2.5rem; border: 2px dashed var(--gray-light); border-radius: 16px; background: linear-gradient(135deg, #F0EDEA, var(--rose-blush)); text-align: center; }
+  .photos-placeholder p { color: var(--gray-text); font-size: 0.9rem; font-weight: 500; }
+  .photos-placeholder small { color: var(--rose-light); font-style: italic; font-size: 0.8rem; }
+
+  .section-divider { margin: 5rem auto; max-width: 200px; height: 1px; background: linear-gradient(90deg, transparent, var(--copper-light), transparent); }
+
+  .equity-intro { font-family: 'Newsreader', serif; font-size: 1.05rem; font-style: italic; color: var(--gray-text); margin-bottom: 2.5rem; line-height: 1.7; }
+  .item { margin-bottom: 2.5rem; padding-left: 1.25rem; border-left: 3px solid var(--copper); }
+  .item.rose { border-left-color: var(--rose); }
+  .item-title { font-family: 'Newsreader', serif; font-size: 1.25rem; font-weight: 500; color: var(--charcoal); margin-bottom: 0.15rem; }
+  .item-org { font-size: 0.8rem; color: var(--gray-text); margin-bottom: 0.5rem; }
+  .item-body { font-size: 0.95rem; color: var(--charcoal); line-height: 1.75; }
+  .item-body strong { font-weight: 600; }
+  .item-body a { color: var(--rose); text-decoration: underline; text-underline-offset: 2px; }
+  .item-body a:hover { color: var(--copper); }
+
+  .media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0 2rem; }
+  .media-card { background: white; border-radius: 12px; border: 1px solid var(--gray-light); overflow: hidden; transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+  .media-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .media-card-embed { width: 100%; aspect-ratio: 1/1; overflow: hidden; position: relative; background: #f5f5f5; }
+  .media-card-embed iframe { position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; border: none; transform: translate(-50%, -50%) scale(0.5); transform-origin: center center; }
+  .media-card-visual { width: 100%; aspect-ratio: 1/1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; background: linear-gradient(135deg, var(--rose-blush), #FDF3E7); }
+  .media-card-visual .icon { font-size: 2rem; }
+  .media-card-visual .card-title { font-family: 'Newsreader', serif; font-size: 1rem; font-weight: 500; color: var(--charcoal); text-align: center; padding: 0 1rem; }
+  .media-card-info { padding: 0.75rem 1rem; }
+  .media-card-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.2rem; }
+  .media-card-desc { font-size: 0.78rem; color: var(--gray-text); line-height: 1.45; }
+
+  .links-bar { margin: 3rem 0 2rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-light); display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+  .links-bar a { font-size: 0.85rem; font-weight: 500; text-decoration: none; transition: color 0.2s; }
+  .links-bar a.rose { color: var(--rose); }
+  .links-bar a.copper { color: var(--copper); }
+  .links-bar a:hover { text-decoration: underline; text-underline-offset: 2px; }
+  .links-bar .dot { color: var(--gray-light); font-size: 0.7rem; }
+
+  footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--gray-text); border-top: 1px solid var(--gray-light); margin-top: 3rem; }
+  footer a { color: var(--rose); text-decoration: none; }
+
+  .fade-in { opacity: 0; transform: translateY(16px); animation: fadeUp 0.6s var(--ease) forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; }
+
+  @media (max-width: 768px) { .media-grid { grid-template-columns: 1fr; } .screenshot-pair { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .hero { padding: 6rem 1.25rem 2rem; } .content { padding: 0 1.25rem; } .nav { padding: 0.75rem 1.25rem; } }
+</style>
+</head>
+<body>
+
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img id="lightbox-img" src="" alt="Expanded screenshot">
+</div>
+
+<nav class="nav">
+  <a href="https://angelrajotia.com/index.html" class="nav-logo">AR</a>
+  <div class="nav-links">
+    <a href="https://angelrajotia.com/index.html#work">Case Studies</a>
+    <a href="https://angelrajotia.com/about.html">About</a>
+    <a href="https://angelrajotia.com/playground.html">Playground</a>
+    <a href="https://angelrajotia.com/experience.html">Experience</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="breadcrumb">
+    <a href="https://angelrajotia.com/index.html">Home</a> →
+    <a href="https://angelrajotia.com/about.html">About</a> →
+    Proof of Impact
+  </div>
+  <div class="tags fade-in">
+    <span class="tag tag-rose">Community Building</span>
+    <span class="tag tag-copper">Systems Thinking</span>
+    <span class="tag tag-sage">Healthcare Equity</span>
+    <span class="tag tag-lavender">AI-Native</span>
+  </div>
+  <h1 class="fade-in delay-1">Proof of <em>Impact</em></h1>
+  <p class="subtitle fade-in delay-2">Engineering systems that connect, empower, and scale... for real people. This is a subset collection of evidence that things exist in the world because of me.</p>
+</section>
+
+<div class="hero-image-area">
+  <!-- ⚠️ REPLACE: <img src="images/group-photo.jpg" alt="Pearson Scholars" class="hero-image"> -->
+  <div class="hero-image-placeholder fade-in delay-3">
+    <span>📸</span>
+    <p>HERO GROUP PHOTO — Pearson Scholars Together</p>
+    <small>Replace with your widest group photo showing scale</small>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="section-label">01 — The Human Scale</div>
+  <h2>Building a Sustainable Ecosystem for <em>330+ International Scholars</em></h2>
+  <p class="context-text">When I looked at the Lester B. Pearson Scholarship program, I saw over 330 of the brightest and most ambitious international students in Canada from over 188 countries operating in complete silos. There was no central infrastructure. No cross-cohort connections, no communication channels, no shared social fabric. <strong>I didn't wait for the university to fix it. I took ownership of a problem that wasn't mine</strong> and architected the communication and social systems from scratch. I created the cross-cohort WhatsApp network, organized 30+ official and unofficial events in a year, and as the Social Committee Co-Chair I managed a $10K+ annual fund for community programming. Today, it is a self-sustaining ecosystem that connects scholars across every cohort, campus, and country.</p>
+
+  <div class="section-label">Wall of Impact (hear directly from the people who have been impacted)</div>
+
+  <!-- 1 -->
+  <div class="proof-block">
+    <div class="proof-label">Proof of System Design</div>
+    <div class="proof-tagline">I build infrastructure that scales.</div>
+    <div class="proof-quote">"The WhatsApp social you made and manage since it allows all the scholars across different cohorts and campus to meet each other and connect. It creates a sense of community for all of us, and gives us a platform for sharing resources, and advices for each other."</div>
+    <div class="proof-attribution">— Kevin T., 2024 Pearson Scholar</div>
+    <img src="impact_screenshots/Kevin.png" alt="Kevin's message" class="proof-screenshot" style="max-width:520px;" onclick="openLightbox(this)">
+  </div>
+
+  <!-- 2 -->
+  <div class="proof-block rose">
+    <div class="proof-label">Proof of Complex Coordination & Seamless Execution</div>
+    <div class="proof-tagline">I manage budgets, logistics, and execute large-scale initiatives — so well they feel effortless.</div>
+    <div class="proof-quote">"Want to fully recognize how much thought & effort you put into this, and how cool it is that you could put this kind & scale of a Pearson trip together... thank you expedition lead @Angel for putting everything together so seamlessly."</div>
+    <div class="proof-attribution">— Devansh K., Vedant H., Mahmoud R., Matthieu C., Haris M., Mubtaseem Z. — Pearson Scholars and Alumni (Portaging Trip, Jul 2025)</div>
+    <img src="impact_screenshots/Group_2.png" alt="Group WhatsApp thread thanking Angel for organizing the Pearson portaging trip" class="proof-screenshot" style="max-width:580px;" onclick="openLightbox(this)">
+  </div>
+
+  <!-- 3 -->
+  <div class="proof-block">
+    <div class="proof-label">Proof of Deep Empathy</div>
+    <div class="proof-tagline">I care deeply about the people using the systems I build.</div>
+    <div class="proof-quote">"She goes beyond just organizing events. She's very hands on, checking in on committee members and when the events take place, she makes a point of going around to make sure everyone feels included."</div>
+    <div class="proof-attribution">— Hilary W., 2025 Pearson Scholar</div>
+    <img src="impact_screenshots/Hilary_Wekesa.png" alt="Hilary's message" class="proof-screenshot" style="max-width:540px;" onclick="openLightbox(this)">
+  </div>
+
+  <!-- 4 -->
+  <div class="proof-block rose">
+    <div class="proof-label">Proof of Belonging</div>
+    <div class="proof-tagline">I create spaces where people feel like they matter.</div>
+    <div class="proof-quote">"Coming from another country and missing my family, they've really made me feel included and part of the Pearson/UofT community!! It's made a bigger difference than you probably realize."</div>
+    <div class="proof-attribution">— Sara S., 2025 Pearson Scholar</div>
+    <img src="impact_screenshots/Sara_Salguero.png" alt="Sara's message" class="proof-screenshot" style="max-width:520px;" onclick="openLightbox(this)">
+  </div>
+
+  <!-- 5 -->
+  <div class="proof-block lavender">
+    <div class="proof-label">Proof of Scale</div>
+    <div class="proof-tagline">The community I built spans 180+ scholars from vastly different backgrounds.</div>
+    <div class="proof-quote">"Angel has single-handedly united a community of over 180 scholars from vastly different cultural and academic backgrounds. Her continuous effort, genuine care, and passion for fostering these connections have been transformative for many, including myself."</div>
+    <div class="proof-attribution">— Sandra R., 2022 Pearson Scholar</div>
+    <img src="impact_screenshots/Sandra_Risco.png" alt="Sandra's message" class="proof-screenshot" style="max-width:540px;" onclick="openLightbox(this)">
+  </div>
+
+  <!-- 6 -->
+  <div class="proof-block">
+    <div class="proof-label">Proof of Lasting Impact</div>
+    <div class="proof-tagline">What I build endures beyond my involvement.</div>
+    <div class="proof-quote">"You are the glue and guide of Pearson community. You make new Pearsons feel like they belong and connect them with old Pearsons through the events in THE MOST NATURAL way I have ever seen anyone do."</div>
+    <div class="proof-attribution">— Thúy N., 2024 Pearson Scholar</div>
+    <img src="impact_screenshots/Thúy_Nguyen.png" alt="Thúy's message" class="proof-screenshot" style="max-width:520px;" onclick="openLightbox(this)">
+  </div>
+
+  <!-- 7 -->
+  <div class="proof-block rose">
+    <div class="proof-label">Proof of Growth & Mentorship</div>
+    <div class="proof-tagline">Even alumni keep coming back because of what I've built.</div>
+    <div class="proof-quote">"I've seen you grow a lot over these last few years. I see you put in a lot of effort to bring your vision of creating a stronger Pearson community to life. I graduated a while ago, but your events continue to help me meet a lot of very interesting and ambitious people."</div>
+    <div class="proof-attribution">— Mubtaseem Z., 2017 Pearson Alumnus</div>
+    <img src="impact_screenshots/Mubtaseem_Zaman.png" alt="Mubtaseem's full message" class="proof-screenshot" style="max-width:520px;" onclick="openLightbox(this)">
+  </div>
+
+  <!-- Event photos placeholder -->
+  <div class="photos-placeholder">
+    <p>📸 EVENT PHOTO COLLAGE</p>
+    <small>Add 2–3 candid photos from dinners, trips, picnics here</small>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══ PAGE 2 ═══ -->
+  <div class="section-label">02 — Systemic Equity & Technical Leverage</div>
+  <h2>Driving Systemic <em>Equity</em> & Executing Technical Leverage</h2>
+  <p class="equity-intro">I build systems that matter to real people, focusing on marginalized populations, equitable access, and technology that increases human leverage.</p>
+
+  <div class="item">
+    <div class="item-title">Empowering Financial Freedom</div>
+    <div class="item-org">NGO Partnerships · India</div>
+    <p class="item-body">Partnered with NGOs in India to build on-the-ground pathways for <strong>female financial independence</strong>, helping women gain economic agency through artisanal work and selling handmade products, and mentoring young girls at orphanages. A mission that aligns directly with Wealthsimple's goal to help <em>everyone</em> achieve financial freedom.</p>
+  </div>
+
+  <div class="photos-placeholder" style="margin-bottom:2.5rem;">
+    <p>📸 NGO PHOTO — Your work in India</p>
+    <small>Artisanal work / orphanage mentoring</small>
+  </div>
+
+  <div class="item rose">
+    <div class="item-title">Equitable Healthcare Innovation</div>
+    <div class="item-org">Transform HF · Ted Rogers Centre for Heart Research · UHN</div>
+    <p class="item-body">Over a multi-year UX Research Fellowship, I spearheaded research and design for a <strong>cardiac survivorship app</strong> for sudden cardiac arrest survivors in Canada. Now the only undergraduate trainee in the Transform HF program, participating in user-centred design workshops with researchers, scientists, and patient partners, with a dedicated focus on <strong>Indigenous cultural safety in research and product design</strong> (including a 3-day intensive camp). Research <a href="https://link.springer.com/chapter/10.1007/978-3-031-61966-3_32" target="_blank">published in Springer</a> at HCI International 2024.</p>
+  </div>
+
+  <h2 style="margin-top:3rem;">The <em>AI-Native</em> Builder</h2>
+  <p class="equity-intro">I'm curious about how technology reshapes work and actively look for tools that increase my leverage.</p>
+
+  <div class="item">
+    <div class="item-title">Shipping AI-Driven Products at Scale</div>
+    <div class="item-org">AMD · Software Program Management</div>
+    <p class="item-body">As a Software PM, I drove cross-functional delivery of <strong>Adrenalin AI, AMD Chat, and other AI-driven products and internal tools</strong>, coordinating across product, engineering, QA, and marketing teams. Built AI-powered automation pipelines that cut manual reporting effort by ~70%. Presented work to AMD's CEO that influenced executive roadmap decisions.</p>
+  </div>
+
+  <div class="item rose">
+    <div class="item-title">Predictive AI for High-Stakes Medical Decisions</div>
+    <div class="item-org">SickKids Hospital · Capstone Project</div>
+    <p class="item-body">Currently building a <strong>predictive ML model and intuitive data analytics dashboard</strong>,leveraging data to drive proactive, high-stakes medical decisions at one of the world's leading children's hospitals.</p>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Scaling Impact at Canada's Largest Student Career Network</div>
+    <div class="item-org">You're Next Career Network (YNCN) · UofT · 3 Years</div>
+    <p class="item-body">Organized <strong>6 career fairs with 6,000+ attendees each</strong>. Ideated, planned, and hosted 2 office tours and multiple professional development events. Secured 30+ corporate partnerships and drove $50K+ in revenue through business development to fund large-scale student career events.</p>
+  </div>
+
+  <!-- ═══ SECTION 3 ═══ -->
+  <div class="section-label">03 — More of My Work & Perspective</div>
+  <h2>The Global <em>Perspective</em></h2>
+  <p class="equity-intro">My drive for equitable tech didn't start in a classroom.. it started on the ground in India and shaped everything I've built since.</p>
+
+  <div class="media-grid">
+    <div class="media-card">
+      <div class="media-card-embed">
+        <iframe src="https://www.youtube.com/embed/GU1nsyJZ_cI" allowfullscreen title="Cansbridge Fellowship"></iframe>
+      </div>
+      <div class="media-card-info">
+        <div class="media-card-label" style="color:var(--copper);">Cansbridge Fellowship</div>
+        <div class="media-card-desc">My global lens, NGO work, and drive for equitable tech.. in my own words.</div>
+      </div>
+    </div>
+    <div class="media-card">
+      <div class="media-card-embed">
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7408354518226223104" allowfullscreen title="LinkedIn post"></iframe>
+      </div>
+      <div class="media-card-info">
+        <div class="media-card-label" style="color:var(--rose);">Reflection Post — LinkedIn</div>
+        <div class="media-card-desc">What university has meant to me and why I build for people.</div>
+      </div>
+    </div>
+    <a href="https://angelrajotia.com/uhealth.html" target="_blank" class="media-card">
+      <div class="media-card-visual">
+        <div class="icon">🏥</div>
+        <div class="card-title">UHealth App<br><span style="font-size:0.8rem;color:var(--gray-text);font-family:'DM Sans',sans-serif;font-weight:400;">Full Case Study →</span></div>
+      </div>
+      <div class="media-card-info">
+        <div class="media-card-label" style="color:var(--sage);">Healthcare UX</div>
+        <div class="media-card-desc">Human-factors driven design for international students.</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="links-bar">
+    <a href="https://angelrajotia.com" class="rose" target="_blank">angelrajotia.com</a>
+    <span class="dot">·</span>
+    <a href="https://linkedin.com/in/angel-rajotia" class="copper" target="_blank">LinkedIn</a>
+    <span class="dot">·</span>
+    <a href="https://future.utoronto.ca/meet-2021-pearson-scholars#:~:text=community%2C%20and%20country.”-,Angel%20Rajotia,-Carmel%20Convent%20School" class="rose" target="_blank">Pearson Intro 2021</a>
+    <span class="dot">·</span>
+    <a href="https://link.springer.com/chapter/10.1007/978-3-031-61966-3_32" class="copper" target="_blank">Published Research (Springer)</a>
+    <span class="dot">·</span>
+    <a href="https://youtu.be/GU1nsyJZ_cI" class="rose" target="_blank">Cansbridge Video</a>
+  </div>
+</div>
+
+<footer>© 2025 <a href="https://angelrajotia.com">Angel Rajotia</a></footer>
+
+<script>
+function openLightbox(img){const o=document.getElementById('lightbox'),i=document.getElementById('lightbox-img');i.src=img.src;i.alt=img.alt;o.classList.add('active');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+</body>
+</html>
